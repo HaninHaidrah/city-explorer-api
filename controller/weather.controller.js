@@ -1,14 +1,21 @@
-const axios =require('axios');
-require('dotenv').config();
+const axios = require("axios");
+require("dotenv").config();
 const APIKEY = process.env.WEATHER_API_KEY;
-const Forecast =require ('../models/weather.model')
+const Forecast = require("../models/weather.model");
+const Cache = require("../helper/cache.helper");
+const newCache = new Cache();
 
-const getWeather=async(request,respond)=>{
+const getWeather = async (request, respond) => {
+  const city_name = request.query.city;
 
-    const city_name = request.query.city;
-
+  let returnedArray = newCache.foreCast.find((item) => {
+    item.city_name;
+  });
+  if (returnedArray) {
+    respond.json(returnedArray.data);
+  } else {
     const weatherURL = `https://api.weatherbit.io/v2.0/forecast/daily`;
-  
+
     const gettingTheData = await axios.get(
       `${weatherURL}?city=${city_name}&key=${APIKEY}`
     );
@@ -17,13 +24,20 @@ const getWeather=async(request,respond)=>{
         return new Forecast(el.datetime, el.weather.description);
       });
       if (result.length) {
+        newCache.foreCast.push({
+          'city_name':city_name,
+          'data': result
+        })
         respond.json(result);
-      } else {
+        console.log(newCache)
+      }       
+      else {
         respond.send("something went wrong");
       }
     } else {
       respond.send("no data");
     }
-}
+  }
+};
 
-module.exports=getWeather
+module.exports = getWeather;

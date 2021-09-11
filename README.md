@@ -22,14 +22,14 @@
 
 ## Credit and Collaborations
 
-<!-- Give credit (and a link) to other people or resources that helped you.
+Give credit (and a link) to other people or resources that helped you.
 
-Name of feature: ________________________________
+Name of feature: Modelize
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: an hour
 
-Start time: _____
+Start time: 8:00
 
-Finish time: _____
+Finish time: 8:30
 
-Actual time needed to complete: _____
+Actual time needed to complete:30 minutes

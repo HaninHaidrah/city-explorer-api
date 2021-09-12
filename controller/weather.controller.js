@@ -8,7 +8,13 @@ const newCache = new Cache();
 const getWeather = async (request, respond) => {
   const city_name = request.query.city;
 
-  let returnedArray = newCache.foreCast.find((item) => {
+  const dayInMilSec = 86400000;
+  const oneDayPassed = (Date.now() - newCache.timeStamp) > dayInMilSec;
+  if (oneDayPassed) {
+    newCache = new Cache();
+  }
+
+  const returnedArray = newCache.foreCast.find((item) => {
     item.city_name;
   });
   if (returnedArray) {

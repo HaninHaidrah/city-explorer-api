@@ -3,7 +3,8 @@
 class Cache{
     constructor(){
         this.foreCast=[],
-        this.movie=[]
+        this.movie=[],
+        this.timeStamp=Date.now()
     }
 }
 

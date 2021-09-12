@@ -7,6 +7,11 @@ const newCache = new Cache();
 
 const getMovie = async (request, response) => {
   const city_name = request.query.city;
+  const dayInMilSec = 86400000;
+  const oneDayPassed = (Date.now() - newCache.timeStamp) > dayInMilSec;
+  if (oneDayPassed) {
+    newCache = new Cache();
+  }
   const filteredArray = newCache.movie.find((item) => {
     item.name;
   });
